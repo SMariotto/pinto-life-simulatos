@@ -1,40 +1,152 @@
+/* style.css - Interface Glassmorphism e Ajuste de Tamanho */
 body {
-    font-family: Arial;
+    font-family: 'Courier New', Courier, monospace;
     text-align: center;
-    background: #fff8dc;
+    background: #121212;
+    color: #f0f0f0;
+    margin: 0;
+    overflow: hidden; /* Tudo em uma só tela */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 h1 {
-    color: #ff9900;
+    color: #ffcc00;
+    text-shadow: 2px 2px 0px #996600;
+    font-size: 2.2em;
+    margin: 5px 0 10px 0;
+}
+
+#game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 95%;
+    max-width: 550px;
+    background: rgba(38, 38, 38, 0.65);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 20px;
+    border: 3px solid rgba(255, 204, 0, 0.3);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    position: relative;
+    z-index: 10;
+}
+
+.stats-panel, .controls-panel, .code-panel {
+    background: rgba(51, 51, 51, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.stats-panel p {
+    margin: 4px 0;
+    font-size: 1.05em;
+}
+
+.stats-panel span {
+    font-weight: bold;
+    color: #ffcc00;
+}
+
+#dog-container {
+    position: relative;
+    margin: 5px 0;
 }
 
 #dog {
-    width: 150px;
+    width: 110px;
     cursor: pointer;
-    transition: transform 0.1s;
+    transition: transform 0.05s;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
 #dog:active {
-    transform: scale(1.1);
+    transform: scale(1.12);
+}
+
+/* Painel de upgrades em grade para caber tudo na tela */
+.controls-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    max-height: 180px;
+    overflow-y: auto; /* Caso adicione mais coisas futuramente */
 }
 
 button {
-    margin: 5px;
-    padding: 10px;
+    padding: 10px 8px;
     cursor: pointer;
     background: #ffcc00;
+    color: #1a1a1a;
     border: none;
+    font-weight: bold;
+    font-family: inherit;
+    border-radius: 6px;
+    font-size: 0.85em;
+    transition: background 0.2s, transform 0.1s;
 }
 
 button:hover {
-    background: #ffaa00;
+    background: #ff9900;
+    transform: translateY(-1px);
+}
+
+#codigoInput {
+    padding: 8px;
+    background: rgba(26, 26, 26, 0.8);
+    color: #f0f0f0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-family: inherit;
+    border-radius: 6px;
+    width: 60%;
+    margin-right: 5px;
+    text-align: center;
+}
+
+#mensagem {
+    height: 18px;
+    margin: 5px 0 0 0;
+    font-weight: bold;
+    font-size: 0.85em;
 }
 
 #galinheiro {
-    margin-top: 20px;
-    min-height: 100px;
-    background: #eee;
-    padding: 10px;
-    border-radius: 10px;
-    font-size: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* AGORA OS PINTOS DO FUNDO FICAM MAIORES (55px) */
+.visual-pinto {
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    pointer-events: none;
+    object-fit: contain;
+    transition: left 1.9s linear, top 1.9s linear;
+}
+
+/* Pintos que saltam na frente de tudo */
+.jump-pinto {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    pointer-events: none;
+    object-fit: contain;
+    z-index: 999999;
 }
